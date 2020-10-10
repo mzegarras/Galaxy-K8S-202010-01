@@ -107,6 +107,24 @@
 
     ```
 
+1. Reto
+
+    ```sh
+    docker run -d -e MYSQL_ROOT_PASSWORD=my-secret-pw -p 3306:3306 mysql:5.7
+    ```
+
+    ```YAML
+    version: '3.8'
+    services:
+      db:
+        image: mysql:5.7
+        ports:
+          - 3306:3306
+        environment:
+          MYSQL_ROOT_PASSWORD: my-secret-pw          
+    ```    
+
+
 1. Docker-compose Mysql
 
     * [restart](https://docs.docker.com/compose/compose-file/#restart)
@@ -144,28 +162,26 @@
 
     ```YAML
     version: '3.8'
-
     services:
-      db:
+      db01:
         image: mysql:5.7
         volumes:
           - db_data:/var/lib/mysql
-        restart: always
+        restart: always 
         environment:
           MYSQL_ROOT_PASSWORD: somewordpress
           MYSQL_DATABASE: wordpress
           MYSQL_USER: wordpress
           MYSQL_PASSWORD: wordpress
-
       wordpress:
         depends_on:
-          - db
+          - db01
         image: wordpress:latest
         ports:
           - "8000:80"
         restart: always
         environment:
-          WORDPRESS_DB_HOST: db:3306
+          WORDPRESS_DB_HOST: db01:3306
           WORDPRESS_DB_USER: wordpress
           WORDPRESS_DB_PASSWORD: wordpress
           WORDPRESS_DB_NAME: wordpress
@@ -216,16 +232,6 @@
     ```YAML
     version: '3.8'
     services:
-      mongo:
-        image: mongo
-        container_name: mongo
-        restart: always
-        ports:
-          - 27017:27017
-        environment:
-          MONGO_INITDB_ROOT_USERNAME: root
-          MONGO_INITDB_ROOT_PASSWORD: "pwd123456!"
-          MONGO_INITDB_DATABASE: interfaces
       mongo-express:
         image: mongo-express
         restart: always
@@ -234,4 +240,17 @@
         environment:
           ME_CONFIG_MONGODB_ADMINUSERNAME: root
           ME_CONFIG_MONGODB_ADMINPASSWORD: "pwd123456!"
+          ME_CONFIG_MONGODB_SERVER: mongo01
+        depends_on:
+          - mongo   
+      mongo:
+        image: mongo
+        container_name: mongo01
+        restart: always
+        ports:
+          - 27017:27017
+        environment:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: "pwd123456!"
+          MONGO_INITDB_DATABASE: interfaces
     ```      
