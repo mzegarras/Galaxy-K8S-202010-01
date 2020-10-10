@@ -42,7 +42,7 @@
         -e MONGO_INITDB_DATABASE=shop \
         -d mongo
 
-        docker run --name mongo-express \
+    docker run --name mongo-express \
         -e ME_CONFIG_MONGODB_ADMINUSERNAME=root \
         -e ME_CONFIG_MONGODB_ADMINPASSWORD=pwd1234 \
         -e ME_CONFIG_MONGODB_ENABLE_ADMIN=true \
@@ -53,9 +53,9 @@
 
 1. Wordpress
     ```
-    docker run --name wordpress01 --link mysql01 -p 8080:80 -e WORDPRESS_DB_HOST=mysql01:3306 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=Password1234 -e WORDPRESS_DB_NAME=wordpress -d wordpress
+    docker run --name mysql01 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=Password1234 -d mysql
 
-    docker run --name wordpress01 --link mysql01:serverbd01 -p 8080:80 -e WORDPRESS_DB_HOST=serverbd01:3306 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=Password1234 -e WORDPRESS_DB_NAME=wordpress -d wordpress
+    docker run --name wordpress01 --link mysql01 -p 8080:80 -e WORDPRESS_DB_HOST=mysql01:3306 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=Password1234 -e WORDPRESS_DB_NAME=wordpress -d wordpress
     ```
 
 
