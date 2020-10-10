@@ -6,7 +6,7 @@ services:
       context: java/
       dockerfile: ./Dockerfile
     ports:
-      - 8080:8080
+      - 8080:8090
   website:
     image: "tci-web1:latest"
     build:
