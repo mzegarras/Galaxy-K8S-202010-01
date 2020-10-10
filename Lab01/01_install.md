@@ -43,7 +43,7 @@
 
 1. Agregar acceso directo
     ```console
-    sudo docker run -p 8080:80 nginx
+    sudo docker run -p 8080:80 -d nginx
     ```
 
 1. Desactivar firewall
@@ -52,5 +52,5 @@
     sudo systemctl disable firewalld
     sudo iptables -t filter -F
     sudo iptables -t filter -X
-    systemctl restart docker
+    sudo systemctl restart docker
     ```

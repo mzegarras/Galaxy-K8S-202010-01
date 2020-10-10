@@ -22,7 +22,7 @@
 
 1. Conectarse a la máquina con certificado
     ```console
-    ssh -i ./credentials/DockerK8S-202009.pem centos@34.213.80.185
+    ssh -i ./credentials/DockerK8S-202009.pem centos@ec2-34-209-238-31.us-west-2.compute.amazonaws.com
     sudo su -
     ```
 
