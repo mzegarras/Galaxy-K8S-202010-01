@@ -62,7 +62,12 @@
 1. Docker-compose 
 
 * [Official documentation](https://docs.docker.com/compose/compose-file/)
+  
 
+    ```bash
+    docker run -d -p 8080:80 nginx:alpine
+    docker run -d -p 8081:80 nginx:alpine
+    ```
 
     ```YAML
     version: '3.8'
