@@ -3,7 +3,7 @@ services:
   website:
     image: "web01:latest"
     build:
-      context: web/
+      context: angular/
       dockerfile: ./Dockerfile
     ports:
       - 8081:80
