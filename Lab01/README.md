@@ -78,6 +78,19 @@
           - 8080:80
     ```
 
+    ```YAML
+    version: '3.8'
+    services:
+      nginxa:
+        image: nginx:alpine
+        ports:
+          - 8080:80
+      nginxb:
+        image: nginx:alpine
+        ports:
+          - 8081:80          
+    ```
+
     ```sh
     docker-compose up
     docker-compose up -d
