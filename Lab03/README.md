@@ -8,11 +8,24 @@ gcloud components install kubectl
 
 kubectl version
 
-
+**Nodes**
+ kubectl get nodes
+kubectl describe nodes/
 
 
 **DemoWeb**
 kubectl create deployment lpsa --image mzegarra/lpsa:1.0
+kubectl expose deployments lpsa --port=80 --type=LoadBalancer
+kubectl get svc
+kubectl scale deployments/lpsa --replicas=5
+kubectl set image deployments/lpsa lpsa=mzegarra/lpsa:2.0
+
+
+
+
+
+
+
 kubectl scale deployments/lpsa --replicas=5
 kubectl expose deployments lpsa --port=80 --type=LoadBalancer
 kubectl expose deployments lpsa --port=80 --type=Cluster
