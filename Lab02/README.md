@@ -1,5 +1,5 @@
 
-## Config server
+## Docker compose
 1. Arquitectura
 
 ![Screenshot](Arquitectura.png)
