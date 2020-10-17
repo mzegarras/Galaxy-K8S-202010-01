@@ -2,7 +2,6 @@
 ## Config server
 1. Arquitectura
 
-![Optional Text](../master/Lab02/Arquitectura.png)
 ![Screenshot](Arquitectura.png)
 
 1. Generar certificado
