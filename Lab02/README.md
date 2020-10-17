@@ -93,7 +93,7 @@
 
 1. Consultar estado
     ```shell
-    curl http://localhost:8080/correlations/zlRinbynAQL4vQ3xrQzlzzFI1bZmJ2AwbursBxO9 -H 'Content-Type: text/plain' -d 'data to cypher'
+    curl http://localhost:8080/correlations/zlRinbynAQL4vQ3xrQzlzzFI1bZmJ2AwbursBxO9
     ```
 
 1. Monitor redis
