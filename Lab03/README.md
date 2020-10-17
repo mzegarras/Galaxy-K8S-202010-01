@@ -34,6 +34,14 @@
     kubectl set image deployments/lpsa lpsa=mzegarra/lpsa:2.0
     ```
 
+1. Pods
+
+    ```shell
+    kubectl get pods
+    kubectl get pods -w
+    kubectl delete pods/<<idpod>>
+    kubectl describe pods/<<idpod>>
+    ```
 1. Balanceo lpsa
 
     ```shell
