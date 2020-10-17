@@ -1,0 +1,24 @@
+
+logging.level:
+  root: INFO
+  com.example.lab02.service: DEBUG
+  com.example.lab02.repository: DEBUG
+  org.springframework.jdbc.core: DEBUG
+  org.springframework.jdbc.core.StatementCreatorUtils: DEBUG
+  #org.springframework.web: INFO
+  #com.microsoft: ERROR
+
+server:
+  port: 7071
+
+lab02:
+  cache:
+    host: localhost
+    port: 6379
+    enableSsl: false
+    password: password
+  event:
+    host: localhost
+    port: 5672
+    username: rabbitmq
+    password: rabbitmq

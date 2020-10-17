@@ -1,0 +1,119 @@
+version: '3.8'
+services:
+  configserver:
+    image: mzegarra/configserver:1.0.0
+    build:
+      context: lab03
+      dockerfile: ./src/main/docker/Dockerfile
+    ports:
+      - 8888:8888
+    volumes:
+      - ./config-server.jks:/config-server.jks
+    environment:
+      GIT_URI: "https://github.com/mzegarras/tci-config-dev.git"
+      GIT_USER: "mzegarra"
+      GIT_PWD: "abc122333"
+      KEYSTORE_PWD: "YOU_KEYSTORE_PASSWORD"
+      KEYSTORE_ALIAS: "YOU_CONFIG_SERVER_KEY"
+      KEYSTORE_SECRET: "YOU_KEYSTORE_PASSWORD"
+  db:
+    image: mysql:5.7
+    restart: always
+    #ports:
+    #  - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db01
+      MYSQL_USER: lab01user
+      MYSQL_PASSWORD: lab01userpwd
+
+  cache:
+    image: redis:4-alpine
+    command: sh -c 'echo "requirepass password" | redis-server -'
+    #ports:
+    #  -  :6379
+  cache-client:
+    image: redis:4-alpine
+    command: redis-cli -h cache
+    depends_on:
+    - cache
+
+  bus:
+    image: "rabbitmq:3-management"
+    #environment:
+      #RABBITMQ_DEFAULT_USER: "rabbitmq"
+      #RABBITMQ_DEFAULT_PASS: "rabbitmq"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - ./rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+      - ./rabbitmq_definitions.json:/etc/rabbitmq/definitions.json:ro
+
+  gates:
+    image: "mzegarra/gates"
+    build:
+      context: lab04
+      dockerfile: ./Dockerfile    
+    ports:
+      - 8080:8443
+    depends_on:
+      - lab01
+
+  lab01:
+    image: "mzegarra/lab01sut:1.0.0"
+    build:
+      context: lab01
+      dockerfile: ./src/main/docker/Dockerfile
+    # deploy:
+    #   mode: replicated
+    #   replicas: 2
+    # ports:
+    #  - 8080:7070
+    environment:
+      SERVER_CONFIG_ENABLED: "true"
+      SERVER_CONFIG_URL: "http://configserver:8888"
+      SERVER_CONFIG_FAIL_FAST: "true"
+      INITIAL_INTERVAL: 1000
+      MULTIPLIER: 2.0
+      MAXINTERVAL: 30000
+      MAXATTEMPTS: 100
+    depends_on:
+      - db
+      - configserver
+      - bus
+      - cache-client
+
+  lab02:
+    image: "mzegarra/lab02sut"
+    build:
+      context: lab02
+      dockerfile: ./src/main/docker/Dockerfile    
+    environment:
+      SERVER_CONFIG_ENABLED: "true"
+      SERVER_CONFIG_URL: "http://configserver:8888"
+      SERVER_CONFIG_FAIL_FAST: "true"
+      INITIAL_INTERVAL: 1000
+      MULTIPLIER: 2.0
+      MAXINTERVAL: 30000
+      MAXATTEMPTS: 100
+    depends_on:
+      - configserver
+      - bus
+      - cache-client
+
+  lab05:
+    image: "mzegarra/lab05sut:latest"
+    build:
+      context: lab05
+      dockerfile: ./src/main/docker/Dockerfile   
+    environment:
+      SERVER_CONFIG_ENABLED: "true"
+      SERVER_CONFIG_URL: "http://configserver:8888"
+      SERVER_CONFIG_FAIL_FAST: "true"
+      INITIAL_INTERVAL: 1000
+      MULTIPLIER: 2.0
+      MAXINTERVAL: 30000
+      MAXATTEMPTS: 100
+    depends_on:
+      - configserver

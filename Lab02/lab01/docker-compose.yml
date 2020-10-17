@@ -1,0 +1,35 @@
+version: '3.3'
+services:
+  lab01:
+    image: "mzegarra/lab01sut:1.0.0"
+    build:
+      context: .
+      dockerfile: ./src/main/docker/Dockerfile
+    ports:
+      - 8080:8080
+    environment:
+      SERVER_CONFIG_ENABLED: "true"
+      SERVER_CONFIG_URL: "http://localhost:8080/config"
+      SERVER_CONFIG_FAIL_FAST: "false"
+      # "--spring.config.location=file:${configDirectory}/application.yml"]
+  db:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db01
+      MYSQL_USER: lab01user
+      MYSQL_PASSWORD: lab01userpwd
+  bus:
+    image: "rabbitmq:3-management"
+    #environment:
+      #RABBITMQ_DEFAULT_USER: "rabbitmq"
+      #RABBITMQ_DEFAULT_PASS: "rabbitmq"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - ./rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+      - ./rabbitmq_definitions.json:/etc/rabbitmq/definitions.json:ro

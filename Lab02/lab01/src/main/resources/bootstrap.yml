@@ -1,0 +1,15 @@
+
+spring:
+  application:
+    name: lab01
+  cloud:
+    config:
+      uri: ${SERVER_CONFIG_URL:''}
+      fail-fast: ${SERVER_CONFIG_FAIL_FAST:true}
+      enabled: true
+      retry:
+        initialInterval: ${INITIAL_INTERVAL:10000}
+        multiplier: ${MULTIPLIER:1.1}
+        maxInterval: ${MAXINTERVAL:1}
+        maxAttempts: ${MAXATTEMPTS:1}
+

@@ -1,0 +1,38 @@
+server:
+  port: 8888
+
+logging.level:
+  root: INFO
+  org.springframework.cloud.config: INFO
+
+
+encrypt:
+  keyStore:
+    location: file:/config-server.jks
+    password: "${KEYSTORE_PWD}"
+    alias: "${KEYSTORE_ALIAS}"
+    secret: "${KEYSTORE_SECRET}"
+
+spring:
+  application:
+    name: configurations
+  cloud:
+    config:
+      retry:
+        max-attempts: 10
+        max-interval: 5000
+      server:
+        health:
+          enabled: false
+        encrypt:
+          enabled: true
+        git:
+          searchPaths: '{application}'
+          uri: ${GIT_URI}
+          ignoreLocalSshSettings: true
+          #hostKey: ${SSH_HOST_KEY}
+          #hostKeyAlgorithm: ${SSH_HOST_KEY_ALGORITHM}
+          #privateKey: ${PRIVATE_KEY}
+          username: ${GIT_USER}
+          password: ${GIT_PWD}
+          timeout: 30

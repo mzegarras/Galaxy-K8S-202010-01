@@ -1,0 +1,91 @@
+
+
+
+
+logging.level:
+  root: INFO
+  com.example.lab01.repository: DEBUG
+  org.springframework.jdbc.core: DEBUG
+  org.springframework.jdbc.core.StatementCreatorUtils: DEBUG
+  #org.springframework.web: INFO
+  #com.microsoft: ERROR
+
+
+server:
+  port: 7070
+
+spring:
+  flyway:
+    enabled: true
+    url: jdbc:mysql://localhost:3306/db01?allowPublicKeyRetrieval=false&useSSL=true&requireSSL=true&serverTimezone=UTC&encrypt=true&autoReconnect=true
+    user: root
+    password: password
+    locations: classpath:db/migration/lab01
+    #schemas: dbo
+    #flyway-schemas: flyway-schemas
+    group: false
+
+lab01:
+  event:
+    host: localhost
+    port: 5672
+    username: rabbitmq
+    password: rabbitmq
+  db01:
+    url: jdbc:mysql://localhost:3306/db01?allowPublicKeyRetrieval=false&useSSL=true&requireSSL=true&serverTimezone=UTC&encrypt=true&autoReconnect=true
+    username: lab01user
+    password: lab01userpwd
+    driverClassName: com.mysql.cj.jdbc.Driver
+
+  features:
+    crypto.key: 123456789012345678901234567890
+    panicEnabled: false
+    smtp1:
+      host: gmail.com
+      cc:
+        - a@demo.com
+        - b@demo.com
+        - c@demo.com
+      port: 8080
+    smtp2:
+      host: gmail.com
+      cc:
+        - a@demo.com
+        - b@demo.com
+        - c@demo.com
+      port: 8080
+    apis:
+      - url: http://www.demo.com
+        credential:
+          user: admin
+          password: password
+        headers:
+          heade1: value1
+          heade2: value2
+          heade4: value4
+      - url: http://www.demo.com
+        credential:
+          user: admin
+          password: password
+        headers:
+          heade1: value1
+          heade2: value2
+          heade4: value4
+      - url: http://www.demo.com
+        credential:
+          user: admin
+          password: password
+        headers:
+          heade1: value1
+          heade2: value2
+          heade4: value4
+      - url: http://www.dem1o.com
+        credential:
+          user: admin
+          password: passwor1d
+        headers:
+          heade1: value1
+          heade2: value2
+          heade4: value4
+
+crypto.key: "keyvalue"

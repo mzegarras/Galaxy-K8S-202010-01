@@ -1,0 +1,128 @@
+{
+  "rabbit_version": "3.8.2",
+  "rabbitmq_version": "3.8.2",
+  "users": [{
+    "name": "rabbitmq",
+    "password_hash": "USzvHg7fk7YZ/9SLxs3Z3otqaUThJ9SXmFgoaIHDzkCpuNnX",
+    "hashing_algorithm": "rabbit_password_hashing_sha256",
+    "tags": "administrator"
+  }],
+  "vhosts": [{
+    "name": "/"
+  }],
+  "permissions": [{
+    "user": "rabbitmq",
+    "vhost": "/",
+    "configure": ".*",
+    "write": ".*",
+    "read": ".*"
+  }],
+  "topic_permissions": [],
+  "parameters": [],
+  "global_parameters": [{
+    "name": "cluster_name",
+    "value": "rabbit@b9040a1723f6"
+  }],
+  "policies": [],
+  "queues": [{
+    "name": "applications",
+    "vhost": "/",
+    "durable": true,
+    "auto_delete": false,
+    "arguments": {
+      "x-queue-type": "classic"
+    }
+  }, {
+    "name": "auditoria",
+    "vhost": "/",
+    "durable": true,
+    "auto_delete": false,
+    "arguments": {
+      "x-queue-type": "classic"
+    }
+  }, {
+    "name": "notifications",
+    "vhost": "/",
+    "durable": true,
+    "auto_delete": false,
+    "arguments": {
+      "x-queue-type": "classic"
+    }
+  }, {
+    "name": "clientes.eliminar",
+    "vhost": "/",
+    "durable": true,
+    "auto_delete": false,
+    "arguments": {
+      "x-queue-type": "classic"
+    }
+  }, {
+    "name": "clientes.crear",
+    "vhost": "/",
+    "durable": true,
+    "auto_delete": false,
+    "arguments": {
+      "x-queue-type": "classic"
+    }
+  }, {
+    "name": "clientes.editar",
+    "vhost": "/",
+    "durable": true,
+    "auto_delete": false,
+    "arguments": {
+      "x-queue-type": "classic"
+    }
+  }],
+  "exchanges": [{
+    "name": "clientes",
+    "vhost": "/",
+    "type": "topic",
+    "durable": true,
+    "auto_delete": false,
+    "internal": false,
+    "arguments": {}
+  }],
+  "bindings": [{
+    "source": "clientes",
+    "vhost": "/",
+    "destination": "applications",
+    "destination_type": "queue",
+    "routing_key": "#",
+    "arguments": {}
+  }, {
+    "source": "clientes",
+    "vhost": "/",
+    "destination": "auditoria",
+    "destination_type": "queue",
+    "routing_key": "clientes.*.*",
+    "arguments": {}
+  }, {
+    "source": "clientes",
+    "vhost": "/",
+    "destination": "clientes.crear",
+    "destination_type": "queue",
+    "routing_key": "clientes.created.putted",
+    "arguments": {}
+  }, {
+    "source": "clientes",
+    "vhost": "/",
+    "destination": "notifications",
+    "destination_type": "queue",
+    "routing_key": "clientes.created.success",
+    "arguments": {}
+  }, {
+    "source": "clientes",
+    "vhost": "/",
+    "destination": "clientes.eliminar",
+    "destination_type": "queue",
+    "routing_key": "clientes.deleted.putted",
+    "arguments": {}
+  }, {
+    "source": "clientes",
+    "vhost": "/",
+    "destination": "clientes.editar",
+    "destination_type": "queue",
+    "routing_key": "clientes.updated.putted",
+    "arguments": {}
+  }]
+}
