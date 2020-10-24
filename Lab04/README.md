@@ -32,8 +32,8 @@
 
 1. Pods declarative
     ```bash
-    kubectl apply -f 01_pod_1.yml
-    kubectl apply -f 01_pod_2.yml
+    kubectl apply -f 01_pod_1.yaml
+    kubectl apply -f 01_pod_2.yaml
     ```    
 
 1. Describe pods
