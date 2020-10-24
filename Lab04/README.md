@@ -151,3 +151,9 @@
     
     kubectl delete pods -l app=web01
     ```
+
+1. Labels
+    ```bash
+    kubectl get pods -l app=web01
+    kubectl delete pods -l app=web01
+    ```
