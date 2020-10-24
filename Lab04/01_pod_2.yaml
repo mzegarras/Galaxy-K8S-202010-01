@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: static-web1
+  name: static-web2
 spec:
   containers:
     - name: web
