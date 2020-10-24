@@ -115,8 +115,15 @@
 1. Expose service
     ```bash
 
-    kubectl expose deployment/web01 --port=9060 --target-port=80 --type=ClusterIP
     kubectl expose deployments web01 --port=9060 --target-port=80 --type=LoadBalancer
+    kubectl get svc -w
+    kubectl delete svc/web01
+
+
+    kubectl expose deployment/web01 --port=9060 --target-port=80 --type=ClusterIP
+
+    
+    
 
     kubectl get svc
     kubectl describe svc/<<svcId>>
