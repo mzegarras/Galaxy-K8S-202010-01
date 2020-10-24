@@ -30,7 +30,9 @@
     kubectl get svc
     kubectl describe pods/<<PodId>>
     
-
-    mysql -h mysql -u root -p
-    use xxx
+    kubectl exec -it <<podId>> -- bash
+    kubectl exec -it mysql-d4d87fbff-zzlsd -- bash
+    
+    mysql -h localhost -u root -p
+    
     ```
