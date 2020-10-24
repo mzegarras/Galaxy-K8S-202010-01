@@ -87,8 +87,14 @@
 
 1. Rollback deployment
     ```bash
+
+    # v1 --> v2 --> v3 --> v4
+
+    # pod1:web1:0.0.1 --> pod2:web1:0.0.1 --> pod3:web1:0.0.1
+    #web1:0.0.2
+    # pod1:web1:0.0.2 --> pod2:web1:0.0.2 --> pod3:web1:0.0.2
     
-    kubectl apply -f 02_deployment_3.yml
+    kubectl apply -f 02_deployment_3.yaml
     kubectl scale deployment web01 --replicas=10
 
     kubectl rollout status deployment/web01
