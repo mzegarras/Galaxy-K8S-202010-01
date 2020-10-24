@@ -16,7 +16,7 @@
     printenv
     ```
 
-1. LAB01 Generar un container con MYSQL
+1. LAB: Generar un deployment con Mysql, service mysq, replicas 1
     ```bash
     mysql -h mysql -u root -p
     use xxx
