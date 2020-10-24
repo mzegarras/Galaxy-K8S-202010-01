@@ -55,9 +55,13 @@
     kubectl get rs
     kubectl get rs -w
 
-
     kubectl port-forward deployment/mscustomers 9060:8080
     curl http://localhost:9060/customers
+
+    kubectl get rs
+    kubectl describe rs/<<rsID>>
+    
+    kubectl apply -f 02_deployment_1.yaml
 
     kubectl get rs
     kubectl describe rs/<<rsID>>
