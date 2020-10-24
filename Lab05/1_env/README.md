@@ -58,4 +58,7 @@
 
     curl http://10.32.1.26:8080
     curl http://simpleweb01service:8081
+
+
+    kubectl port-forward service/simpleweb01service 8080:8081
     ```    

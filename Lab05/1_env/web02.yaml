@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: simpleweb01service
+spec:
+  ports:
+  - port: 8081
+    targetPort: 8080
+  selector:
+    app: simpleweb01
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simpleweb01deployment
+spec:
+  selector:
+    matchLabels:
+      app: simpleweb01
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: simpleweb01
+    spec:
+      containers:
+        - name: simpleweb01
+          image: gcr.io/google-samples/hello-app:1.0
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
