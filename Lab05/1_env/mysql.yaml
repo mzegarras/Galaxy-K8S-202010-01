@@ -33,8 +33,6 @@ spec:
           value: password
         - name: MYSQL_DATABASE
           value: appdb
-        - name: MYSQL_DATABASE
-          value: appdb
         - name: MYSQL_USER
           value: appdb
         - name: MYSQL_PASSWORD

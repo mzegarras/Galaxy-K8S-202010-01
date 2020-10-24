@@ -18,6 +18,11 @@
 
 1. LAB: Generar un deployment con Mysql, service mysq, replicas 1
     ```bash
+    
+    kubectl create -f mysql.yaml
+    kubectl apply -f mysql.yaml
+    kubectl delete -f mysql.yaml
+
     mysql -h mysql -u root -p
     use xxx
     ```
