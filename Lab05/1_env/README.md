@@ -23,6 +23,14 @@
     kubectl apply -f mysql.yaml
     kubectl delete -f mysql.yaml
 
+    kubectl get deployments
+    kubectl get rs
+    kubectl get pods
+    kubectl get services
+    kubectl get svc
+    kubectl describe pods/<<PodId>>
+    
+
     mysql -h mysql -u root -p
     use xxx
     ```
