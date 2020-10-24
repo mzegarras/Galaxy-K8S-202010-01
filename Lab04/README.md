@@ -34,8 +34,12 @@
     kubectl apply -f 01_pod_1.yaml
 
     kubectl port-forward static-web1 8080:8080
-    
+
     kubectl apply -f 01_pod_2.yaml
+
+
+    kubectl describe pods/static-web1
+    kubectl describe pods/static-web2
     ```    
 
 1. Describe pods
