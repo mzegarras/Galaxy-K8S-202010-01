@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mscustomers01
+spec:
+  selector:
+    matchLabels:
+      app: msclientes
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: msclientes
+    spec:
+      containers:
+        - name: msclientes
+          image: mzegarra/msclientes:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - name: http-api
+              containerPort: 8080
