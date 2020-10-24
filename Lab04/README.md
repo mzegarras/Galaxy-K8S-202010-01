@@ -77,6 +77,11 @@
     ```bash
     kubectl scale deployment mscustomers01 --replicas=1
 
+    kubectl scale deployment mscustomers01 --replicas=0
+
+    # Eliminar deployment, replicaSet, pods
+    kubectl delete deployment mscustomers01
+
     ```
 
 
