@@ -23,6 +23,9 @@
     
     kubectl run web-pod --image=nginx --port=80
     kubectl port-forward web-pod 8080:80
+
+    kubectl get pods
+    kubectl get pods -o wide
     
     kubectl port-forward static-web1 8080:80
     ```
