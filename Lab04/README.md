@@ -14,6 +14,11 @@
     apt-get install -y dnsutils
     apt-get install -y tcpdump
     apt-get install -y traceroute
+
+    kubectl exec -it my-shell -- bash
+    apt-get update -y
+    apt-get install -y curl
+    apt-get install -y iputils-ping
     ```
 
 1. Pods
