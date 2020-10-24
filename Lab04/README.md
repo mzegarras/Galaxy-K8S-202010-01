@@ -51,6 +51,11 @@
 1. Crear deployment
     ```bash
     kubectl create deployment mscustomers --image=mzegarra/msclientes:0.0.1
+    kubectl scale deployment mscustomers --replicas=5
+    kubectl get rs
+    kubectl get rs -w
+
+
     kubectl port-forward deployment/mscustomers 9060:8080
     curl http://localhost:9060/customers
 
