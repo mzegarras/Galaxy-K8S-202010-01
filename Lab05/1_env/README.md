@@ -35,4 +35,11 @@
     
     mysql -h localhost -u root -p
     
+
+    kubectl run my-shell -i --tty --image ubuntu -- bash
+    apt-get update -y
+    apt-get install -y mysql-client
+    apt-get install -y iputils-ping
+
+     kubectl get pods -o wide
     ```
