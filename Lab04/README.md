@@ -27,12 +27,14 @@
     kubectl get pods
     kubectl get pods -o wide
     
-    kubectl port-forward static-web1 8080:80
     ```
 
 1. Pods declarative
     ```bash
     kubectl apply -f 01_pod_1.yaml
+
+    kubectl port-forward static-web1 8080:8080
+    
     kubectl apply -f 01_pod_2.yaml
     ```    
 
