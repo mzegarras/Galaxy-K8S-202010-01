@@ -106,10 +106,47 @@
     EOF
     ```
 
-1. Crear db service
+1. Crear db service sin storage
     ```bash
     kubectl apply -f db.yaml
+
+    kubectl exec -it <<podId>> --sh
+
+    mysql -h localhost -u root -p
+
+    kubectl delete -f db.yaml
+
     ```
+
+    ```bash
+    CREATE TABLE persons (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(30) NOT NULL,
+    lastname VARCHAR(30) NOT NULL,
+    email VARCHAR(50),
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    );
+    ```
+
+1. Crear db service con storage
+    ```bash
+    kubectl apply -f db-volume.yaml
+
+    kubectl exec -it <<podId>> --sh
+
+    mysql -h localhost -u root -p
+
+    ```
+
+    ```bash
+    CREATE TABLE persons (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(30) NOT NULL,
+    lastname VARCHAR(30) NOT NULL,
+    email VARCHAR(50),
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    );
+    ```    
 
 1. Crear cache service
     ```bash
