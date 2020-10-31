@@ -138,6 +138,9 @@
     show databases;
     use db01;
     show tables;
+
+    kubectl get pvc
+    kubectl get PersistentVolumeClaim
     ```
 
     ```bash
