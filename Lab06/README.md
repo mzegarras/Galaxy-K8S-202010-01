@@ -68,6 +68,7 @@
     
     kubectl get configMaps
     kubectl describe configMaps/configserver-settings
+    kubectl edit configMaps/configserver-settings
     ```
 
 
@@ -84,15 +85,6 @@
 
     curl http://localhost:8888/clientes/default
     ```
-
-1. Test config-server
-    ```bash
-    kubectl get pods
-    kubectl get svc
-    kubectl port-forward service/configserver 8888:8888
-
-    curl http://localhost:8888/clientes/default
-    ```    
 
 1. Configurations settings
     ```bash
