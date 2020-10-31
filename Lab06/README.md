@@ -47,7 +47,7 @@
     ```
 
 
-1. Crear config git credentials
+1. Crear config maps
     ```bash
     cat <<EOF | kubectl apply -f -
     apiVersion: "v1"
