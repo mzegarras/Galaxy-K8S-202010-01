@@ -258,5 +258,25 @@
     kubectl apply -f hpa.yaml
 
     kubectl get hpa
-    
+
      ```     
+1. Creaar NS
+    ```bash
+     kubectl create ns dev
+     kubectl create ns qa
+     kubectl create ns prd
+
+     kubectl get ns
+
+     kubectl create secret generic configserver-key --namespace dev --from-file=config-server.jks
+     kubectl create secret generic configserver-key --namespace qa --from-file=config-server.jks
+     kubectl create secret generic configserver-key --namespace prd --from-file=config-server.jks
+
+     kubectl get secret -n dev
+     kubectl get secret -n qa
+     kubectl get secret -n prd
+
+     kubectl apply -f config-server.yaml -n dev
+     kubectl get deployments -n dev
+     ```    
+    
