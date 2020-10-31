@@ -175,6 +175,13 @@
     kubectl apply -f bus.yaml
     ```
 
+    ### Redis as service
+    1. [AWS - SQS] (https://aws.amazon.com/sqs/)
+    1. [AWS - SNS] (https://aws.amazon.com/sns/)
+    1. [Azure - Service  BUS] (https://docs.microsoft.com/en-us/azure/service-bus-messaging/)
+    1. [GCP - Pub-sub] (https://cloud.google.com/pubsub/docs/overview)
+    
+
 1. Crear customers
     ```bash
     kubectl apply -f lab01.yaml

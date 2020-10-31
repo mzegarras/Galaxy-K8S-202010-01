@@ -35,6 +35,15 @@ spec:
       containers:
         - name: lab01
           image: mzegarra/lab01sut:1.0.0
+          readinessProbe:
+             httpGet:
+               path: /actuator/health
+               port: 7070
+             initialDelaySeconds: 30
+             periodSeconds: 10
+             timeoutSeconds: 10
+             successThreshold: 1
+             failureThreshold: 3
           livenessProbe:
             exec:
               command:
@@ -45,22 +54,13 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
-          readinessProbe:
-             httpGet:
-               path: /actuator/health
-               port: 7070
-             initialDelaySeconds: 30
-             periodSeconds: 10
-             timeoutSeconds: 10
-             successThreshold: 1
-             failureThreshold: 3              
           resources:
             limits:
               cpu: 500m
               memory: 256Mi
             requests:
               cpu: 100m
-              memory: 128Mi
+              memory: 128Mi        
           ports:
             - containerPort: 7070
           envFrom:
