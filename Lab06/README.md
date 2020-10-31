@@ -20,6 +20,8 @@
     ```bash
     traceroute www.googleapis.com
     kubectl create secret generic configserver-key --from-file=config-server.jks
+    kubectl get secret
+    kubectl describe secret/configserver-key
     ```
 
 1. Convertir base64 - (https://www.base64decode.org/)
@@ -39,7 +41,7 @@
         name: "git-credentials"
     type: "Opaque"
     data:
-        username: "user-github-base64"
+        username: "bXplZ2FycmFAZ21haWwuY29t"
         password: "password-githhub-base64"
     EOF
     ```
@@ -60,6 +62,12 @@
         KEYSTORE_ALIAS: "YOU_CONFIG_SERVER_KEY"
         KEYSTORE_SECRET: "YOU_KEYSTORE_PASSWORD"    
     EOF
+    ```
+
+    ```bash
+    
+    kubectl get configMaps
+    kubectl describe configMaps/configserver-settings
     ```
 
 
