@@ -135,7 +135,9 @@
     kubectl exec -it <<podId>> --sh
 
     mysql -h localhost -u root -p
-
+    show databases;
+    use db01;
+    show tables;
     ```
 
     ```bash
