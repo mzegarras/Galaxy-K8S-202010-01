@@ -128,6 +128,15 @@
     );
     ```
 
+
+    ### Db as service
+    1. [AzureSQL](https://azure.microsoft.com/es-es/services/sql-database/)
+    1. [CloudSQL](https://cloud.google.com/sql/docs/mysql?hl=es-419)
+    1. [RDS](https://aws.amazon.com/rds/)
+    
+
+    
+
 1. Crear db service con storage
     ```bash
     kubectl apply -f db-volume.yaml
