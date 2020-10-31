@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bus
+spec:
+  selector:
+    matchLabels:
+      app: bus
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bus
+    spec:
+      containers:
+      - name: bus
+        image: mzegarra/bussut:latest
+        ports:
+          - containerPort: 15672
+          - containerPort: 5672
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bus
+  labels:
+    app: bus
+spec:
+  ports:
+    - port: 15672
+      targetPort: 15672
+      name: management
+    - port: 5672
+      targetPort: 5672
+      name: internal
+  selector:
+    app: bus
+  type: ClusterIP
+  #type: LoadBalancer

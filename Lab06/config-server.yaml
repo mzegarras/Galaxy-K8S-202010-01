@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: configserver
+      version: v1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: configserver
+        version: v1
+    spec:
+      containers:
+      - name: configserver
+        image: mzegarra/configserver:1.0.0
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi #256Mi
+        ports:
+          - containerPort: 8888
+        envFrom:
+          - configMapRef:
+              name: configserver-settings
+        volumeMounts:
+          - name: configserver-key
+            mountPath: /config-server.jks
+        env:
+          - name: GIT_USER
+            valueFrom:
+              secretKeyRef:
+                name: git-credentials
+                key: username
+          - name: GIT_PWD
+            valueFrom:
+              secretKeyRef:
+                name: git-credentials
+                key: password
+      volumes:
+        - name: configserver-key
+          secret:
+            secretName: configserver-key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: configserver
+  labels:
+    app: configserver
+spec:
+  ports:
+    - port: 8888
+      targetPort: 8888
+  selector:
+    app: configserver
+  type: ClusterIP
+---

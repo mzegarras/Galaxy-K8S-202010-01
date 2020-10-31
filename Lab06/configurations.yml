@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ms-configurations
+  labels:
+    app: ms-configurations
+data:
+  SERVER_CONFIG_ENABLED: "true"
+  SERVER_CONFIG_URL: "http://configserver:8888"
+  SERVER_CONFIG_FAIL_FAST: "true"
+  INITIAL_INTERVAL: "3000"
+  MULTIPLIER: "2.0"
+  MAXINTERVAL: "30000"
+  MAXATTEMPTS: "100"
