@@ -1,0 +1,69 @@
+
+
+### Send Sync
+GET http://localhost:8080/customers HTTP/1.1
+content-type: application/json
+
+
+
+### Send Sync
+POST http://localhost:8080/customers HTTP/1.1
+content-type: application/json
+X-Api-Force-Sync: true
+
+{
+    "customer": {
+        "nombre": "name1",
+        "paterno": "lastname1222",
+        "password": "demo"
+    }
+}
+
+
+
+### Send Async
+POST http://localhost:8080/customers HTTP/1.1
+content-type: application/json
+X-Api-Force-Sync: false
+
+{
+    "customer": {
+        "nombre": "name1",
+        "paterno": "lastname1222",
+        "password": "demo"
+    }
+}
+
+### Send Async
+GET http://localhost:8080/correlations/Xi2WqMbPnRep0RQeE0xgmJ43fXce25fH6gGTOjPr HTTP/1.1
+
+
+### DELETE program
+DELETE http://localhost:8080/customers/31 HTTP/1.1
+
+
+
+
+fortio load -c 20 -qps 0 -n 20 -loglevel Warning http://localhost:8080/customers/30
+
+
+
+siege -r 4 -c 50 -d 1  -v -H "X-Api-Force-Sync: false" --content-type 'application/json' "http://localhost:8080/customers POST {
+    \"customer\": {
+        \"nombre\": \"name1\",
+        \"paterno\": \"lastname1222\",
+        \"password\": \"demo\"
+    }
+}"
+
+
+auth=$(echo -n 'myclient:secret' | openssl base64)
+siege -r 2 -c 20 -v -H "Authorization:Basic $auth" -H "Content-type: application/x-www-form-urlencoded; charset=utf-8" "http://localhost:8080/oauth/token POST grant_type=client_credentials" 
+siege -r 2 -c 20 -d 1  -v -H "Authorization:Basic $auth" -H "Content-type: application/x-www-form-urlencoded; charset=utf-8" "http://localhost:8080/oauth/token POST grant_type=client_credentials" 
+
+
+======
+docker exec -it <<redis-cli>> /bin/sh
+auth password
+monitor
+======

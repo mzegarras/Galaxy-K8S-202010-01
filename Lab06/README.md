@@ -211,7 +211,7 @@
 
 1. 200 Peticiones de consulta de clientes
     ```bash
-    fortio load -c 20 -qps 0 -n 200 -loglevel Warning http://34.123.215.232:8080/customers
+    fortio load -c 20 -qps 0 -n 200 -loglevel Warning http://130.211.221.110:8080/customers
      ```
 
 1. 40 transacciones / r=request, c=connections
