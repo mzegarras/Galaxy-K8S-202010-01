@@ -216,7 +216,7 @@
 
 1. 40 transacciones / r=request, c=connections
     ```bash
-    siege -r 100 -c 2 -d 1  -v -H "X-Api-Force-Sync: false" --content-type 'application/json' "http://34.123.215.232:8080/customers POST {
+    siege -r 100 -c 2 -d 1  -v -H "X-Api-Force-Sync: false" --content-type 'application/json' "http://130.211.221.110:8080/customers POST {
     \"customer\": {
         \"nombre\": \"name1\",
         \"paterno\": \"lastname1222\",
@@ -256,4 +256,7 @@
     ```bash
     kubectl autoscale deployment lab01 --cpu-percent=50 --min=1 --max=5
     kubectl apply -f hpa.yaml
+
+    kubectl get hpa
+    
      ```     

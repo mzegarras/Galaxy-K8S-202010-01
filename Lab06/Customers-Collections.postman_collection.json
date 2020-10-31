@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "a78dad04-e2bd-4158-a627-690d133ac74e",
+		"name": "Customers-Collections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": " http://130.211.221.110:8080/customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://130.211.221.110:8080/customers",
+					"protocol": "http",
+					"host": [
+						"130",
+						"211",
+						"221",
+						"110"
+					],
+					"port": "8080",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Sync",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Api-Force-Sync",
+						"value": "true",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customer\": {\n        \"nombre\": \"name1\",\n        \"paterno\": \"lastname1222\",\n        \"password\": \"demo\"\n    }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://130.211.221.110:8080/customers",
+					"protocol": "http",
+					"host": [
+						"130",
+						"211",
+						"221",
+						"110"
+					],
+					"port": "8080",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Async",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Api-Force-Sync",
+						"value": "false",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customer\": {\n        \"nombre\": \"name1\",\n        \"paterno\": \"lastname1222\",\n        \"password\": \"demo\"\n    }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://130.211.221.110:8080/customers",
+					"protocol": "http",
+					"host": [
+						"130",
+						"211",
+						"221",
+						"110"
+					],
+					"port": "8080",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Status Operation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://130.211.221.110:8080/correlations/uen1hMeT9F9NSluLe6LfAENqPRhjtrQea0FoDtrI",
+					"protocol": "http",
+					"host": [
+						"130",
+						"211",
+						"221",
+						"110"
+					],
+					"port": "8080",
+					"path": [
+						"correlations",
+						"uen1hMeT9F9NSluLe6LfAENqPRhjtrQea0FoDtrI"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Oauth Server",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "myclient",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://130.211.221.110:8080/oauth/token",
+					"protocol": "http",
+					"host": [
+						"130",
+						"211",
+						"221",
+						"110"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
