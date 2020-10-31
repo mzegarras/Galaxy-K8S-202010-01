@@ -165,6 +165,11 @@
     kubectl apply -f cache.yaml
     ```
 
+    ### Redis as service
+    1. [AWS](https://aws.amazon.com/es/redis/)
+    1. [Azure](https://azure.microsoft.com/en-us/services/cache/)
+    
+
 1. Crear bus service
     ```bash
     kubectl apply -f bus.yaml
